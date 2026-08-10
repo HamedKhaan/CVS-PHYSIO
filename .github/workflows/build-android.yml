@@ -1,7 +1,7 @@
 name: Build Android APK
 
 on:
-  workflow_dispatch:   # دستی از گیت‌هاب اجرا می‌شود
+  workflow_dispatch:
   push:
     branches: [ main, master ]
 
