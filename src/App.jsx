@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { CVSBasicHemodynamics } from "./modules/01-basic-hemodynamics";
-import { CVSFrankStarlingVenousReturn } from "./modules/02-frank-starling-venous-return";
-import { CVSCardiacCyclePVLoop } from "./modules/03-cardiac-cycle-pv-loop";
-import { CVSVascularDistensibility } from "./modules/04-vascular-distensibility-pulse-pressure";
-import { CVSMicrocirculation } from "./modules/05-microcirculation-starling-forces";
+import CVSBasicHemodynamics from "./modules/01-basic-hemodynamics";
+import CVSFrankStarlingVenousReturn from "./modules/02-frank-starling-venous-return";
+import CVSCardiacCyclePVLoop from "./modules/03-cardiac-cycle-pv-loop";
+import CVSVascularDistensibility from "./modules/04-vascular-distensibility-pulse-pressure";
+import CVSMicrocirculation from "./modules/05-microcirculation-starling-forces";
 
 const MODULES = [
   { id: "01", title: "Basic Hemodynamics", subtitle: "Flow, pressure, resistance & Poiseuille", Component: CVSBasicHemodynamics },
