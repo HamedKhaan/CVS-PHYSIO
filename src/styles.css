@@ -64,3 +64,13 @@ button,input,select,textarea{font-size:16px}
   input[type=range]{min-height:32px}
   input[type=checkbox],input[type=radio]{width:22px;height:22px}
 }
+/* Fix Recharts on Android WebView */
+.recharts-responsive-container {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 160px;
+}
+.recharts-wrapper {
+  width: 100% !important;
+  height: 100% !important;
+}
