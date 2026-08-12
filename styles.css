@@ -1,0 +1,101 @@
+*{box-sizing:border-box}
+:root{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color-scheme:dark;background:var(--bg);color:var(--c-text);--bg:#0b1020;--surface:#10182b;--c-bg:#0F1720;--c-panel:#16212E;--c-panel2:#1C2A3A;--c-border:#2A3B4D;--c-text:#E7ECF2;--c-muted:#8FA1B3;--c-faint:#5A6B7D;--c-copper:#C97A4A;--c-copper-dim:#8A5636;--c-artery:#C0453C;--c-vein:#3E7CB1;--c-capillary:#4FB8C4;--c-hormone:#E0B34D;--c-good:#5FA97A;--c-bad:#C0453C;--c-good-bg:#173226;--c-bad-bg:#331a18;--c-on-good:#0F1720}
+:root[data-theme="light"]{color-scheme:light;--bg:#f5f7fb;--surface:#ffffff;--c-bg:#f7f8fb;--c-panel:#ffffff;--c-panel2:#eef2f6;--c-border:#d5dde7;--c-text:#172033;--c-muted:#5e6b7d;--c-faint:#8a98aa;--c-copper:#a85424;--c-copper-dim:#7f3c1a;--c-artery:#b22d2a;--c-vein:#2e69a8;--c-capillary:#18879a;--c-hormone:#9a6d00;--c-good:#2e7d4e;--c-bad:#b22d2a;--c-good-bg:#e3f3e9;--c-bad-bg:#fdeaea;--c-on-good:#173226}
+html,body,#root{margin:0;min-height:100%;width:100%;background:var(--bg);color:var(--c-text)}
+body{min-height:100vh;background:var(--bg);color:var(--c-text);transition:background-color .2s ease,color .2s ease}
+.home{min-height:100vh;max-width:1180px;margin:0 auto;padding:clamp(20px,4vw,48px)}
+.home-hero{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;padding:12px 0 34px}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;opacity:.65}
+.home h1{font-size:clamp(32px,6vw,60px);line-height:1.02;margin:9px 0 14px;letter-spacing:-.04em}
+.home-hero p{max-width:720px;line-height:1.6;margin:0;opacity:.72}
+.theme-button,.top-button{border:1px solid rgba(127,145,180,.3);background:rgba(127,145,180,.08);color:inherit;border-radius:12px;padding:10px 13px;font:inherit;cursor:pointer;white-space:nowrap}
+.module-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.module-card{appearance:none;text-align:left;border:1px solid rgba(127,145,180,.25);background:rgba(127,145,180,.08);color:inherit;border-radius:18px;padding:22px;min-height:180px;display:flex;flex-direction:column;gap:8px;cursor:pointer;transition:transform .15s ease,border-color .15s ease,background .15s ease}
+.module-card:not(:disabled):hover{transform:translateY(-2px);border-color:rgba(92,145,255,.65);background:rgba(92,145,255,.09)}
+.module-card.placeholder{opacity:.42;cursor:not-allowed}
+.module-number{font-size:12px;font-weight:900;letter-spacing:.12em;opacity:.55}
+.module-card-title{font-size:20px;font-weight:800;line-height:1.2}
+.module-card-subtitle{font-size:13px;line-height:1.45;opacity:.65}
+.module-card-action{margin-top:auto;font-size:12px;font-weight:700;opacity:.7}
+.home-footer{display:flex;justify-content:space-between;gap:12px;margin-top:24px;padding-top:18px;border-top:1px solid rgba(127,145,180,.18);font-size:11px;opacity:.5}
+.app-shell{min-height:100vh}
+.app-bar{position:sticky;top:0;z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid rgba(127,145,180,.18);background:var(--surface);backdrop-filter:blur(12px)}
+.app-title{text-align:center;font-size:12px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.top-button:last-child{justify-self:end}
+.module-host{min-height:calc(100vh - 52px)}
+:root[data-theme="light"]{color-scheme:light;--bg:#f5f7fb;--surface:#ffffff;--c-bg:#f7f8fb;--c-panel:#ffffff;--c-panel2:#eef2f6;--c-border:#d5dde7;--c-text:#172033;--c-muted:#5e6b7d;--c-faint:#8a98aa;--c-copper:#a85424;--c-copper-dim:#7f3c1a;--c-artery:#b22d2a;--c-vein:#2e69a8;--c-capillary:#18879a;--c-hormone:#9a6d00;--c-good:#2e7d4e;--c-bad:#b22d2a;--c-good-bg:#e3f3e9;--c-bad-bg:#fdeaea;--c-on-good:#173226}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0b1020;--surface:#10182b;--c-bg:#0F1720;--c-panel:#16212E;--c-panel2:#1C2A3A;--c-border:#2A3B4D;--c-text:#E7ECF2;--c-muted:#8FA1B3;--c-faint:#5A6B7D;--c-copper:#C97A4A;--c-copper-dim:#8A5636;--c-artery:#C0453C;--c-vein:#3E7CB1;--c-capillary:#4FB8C4;--c-hormone:#E0B34D;--c-good:#5FA97A;--c-bad:#C0453C;--c-good-bg:#173226;--c-bad-bg:#331a18;--c-on-good:#0F1720}
+button:focus-visible{outline:2px solid #6ea0ff;outline-offset:2px}
+@media(max-width:700px){.home{padding:18px}.home-hero{padding-bottom:24px}.home-hero p{font-size:13px}.module-grid{grid-template-columns:1fr}.module-card{min-height:155px}.app-bar{grid-template-columns:auto 1fr auto}.app-title{text-align:left}.home-footer{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+.error-screen{min-height:100vh;display:grid;place-content:center;gap:10px;padding:24px;text-align:center}.error-screen button{justify-self:center;border:1px solid rgba(127,145,180,.3);background:rgba(127,145,180,.08);color:inherit;border-radius:12px;padding:10px 16px;font:inherit;cursor:pointer}.app-bar{padding-top:max(10px,env(safe-area-inset-top));padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}
+
+
+/* V4 mobile/Android UX layer */
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+button,input,select,textarea{font-size:16px}
+.module-host{width:100%;overflow-x:hidden}
+@media(max-width:700px){
+  .home{padding:max(16px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left))}
+  .home-hero{display:block;padding-top:8px}
+  .theme-button{margin-top:18px;min-height:44px}
+  .module-grid{gap:10px}
+  .module-card{min-height:145px;padding:18px;border-radius:16px;touch-action:manipulation}
+  .module-card-title{font-size:18px}
+  .module-card-subtitle{font-size:12px}
+  .app-bar{min-height:54px;padding-top:max(8px,env(safe-area-inset-top));padding-bottom:8px;gap:8px}
+  .top-button{min-height:42px;padding:9px 11px}
+  .app-title{font-size:11px;min-width:0}
+  .module-host{min-height:calc(100dvh - 54px)}
+  /* Prevent chart/tool panels from creating accidental horizontal scrolling. */
+  .module-host svg{max-width:100%}
+  .module-host [style*="width"]{max-width:100%}
+}
+@media(max-width:420px){
+  .home h1{font-size:34px}
+  .home-hero p{font-size:12px}
+  .module-card{min-height:132px;padding:15px}
+  .module-card-title{font-size:17px}
+  .module-card-action{font-size:11px}
+}
+@media(pointer:coarse){
+  input[type=range]{min-height:32px}
+  input[type=checkbox],input[type=radio]{width:22px;height:22px}
+}
+
+/* Fix Recharts sizing on Android WebView / Capacitor */
+.recharts-responsive-container {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 160px !important;
+}
+.recharts-wrapper,
+.recharts-surface {
+  width: 100% !important;
+  height: 100% !important;
+  overflow: visible !important;
+}
+.module-host .recharts-responsive-container {
+  min-height: 180px;
+}
+
+/* Robust chart sizing + per-chart zoom controls */
+.chart-frame{width:100%;min-width:0;max-width:100%;position:relative;border-radius:8px;overflow:auto;overscroll-behavior-x:contain}
+.chart-zoom-stage{width:100%;min-width:0;position:relative}
+.chart-frame .recharts-responsive-container{width:100%!important;height:100%!important;min-width:0!important;min-height:0!important}
+.chart-frame .recharts-wrapper,.chart-frame .recharts-surface{max-width:none!important;overflow:visible!important}
+.chart-zoom-controls{position:absolute;top:8px;right:8px;z-index:5;display:flex;align-items:center;gap:4px;padding:3px;border:1px solid var(--c-border);border-radius:10px;background:var(--c-panel);backdrop-filter:blur(8px)}
+.chart-zoom-button,.chart-zoom-value{min-width:30px;height:30px;border:0;border-radius:7px;background:transparent;color:var(--c-text);font:700 13px/1 system-ui,sans-serif;cursor:pointer}
+.chart-zoom-value{min-width:44px;font-size:11px;color:var(--c-muted)}
+.chart-zoom-button:disabled{opacity:.35;cursor:not-allowed}
+
+.module-host, .home, .app-shell{transition:background-color .2s ease,color .2s ease}
+
+.home-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.github-button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:10px 13px;border:1px solid var(--c-border);background:var(--c-panel2);color:var(--c-text);border-radius:12px;text-decoration:none;font:700 14px/1 system-ui,sans-serif}
+.github-button:hover{background:var(--c-panel2);}
+.home-footer a{color:var(--c-muted);text-decoration:none}
+.home-footer a:hover{text-decoration:underline;color:var(--c-text)}
+@media(max-width:700px){.home-actions{justify-content:flex-start;margin-top:18px}.theme-button{margin-top:0}}
