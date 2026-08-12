@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-  ReferenceDot, ReferenceLine, ResponsiveContainer, BarChart, Bar, Cell
+  ReferenceDot, ReferenceLine, BarChart, Bar, Cell
 } from "recharts";
 import {
   Waves, Activity, Gauge, Brain, RotateCcw,
@@ -159,8 +159,8 @@ function FoundationsTab() {
       <Panel>
         <SectionTitle icon={Gauge}>Where the Blood Volume Actually Sits</SectionTitle>
         <ChartContainer height={200}>
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={CAPACITANCE_DATA} layout="vertical" margin={{ top: 5, right: 20, left: 10, bottom: 0 }}>
+          
+            <BarChart responsive style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} data={CAPACITANCE_DATA} layout="vertical" margin={{ top: 5, right: 20, left: 10, bottom: 0 }}>
               <CartesianGrid stroke={C.border} strokeDasharray="3 3" horizontal={false} />
               <XAxis type="number" stroke={C.muted} fontSize={11} domain={[0, 65]} label={{ value: "% of total blood volume", position: "insideBottom", offset: -3, fill: C.muted, fontSize: 10.5 }} />
               <YAxis type="category" dataKey="name" stroke={C.muted} fontSize={11} width={110} />
@@ -169,7 +169,7 @@ function FoundationsTab() {
                 {CAPACITANCE_DATA.map((d, i) => <Cell key={i} fill={d.color} />)}
               </Bar>
             </BarChart>
-          </ResponsiveContainer>
+          
         </ChartContainer>
         <Note>
           Roughly 60–70% of total blood volume sits in the systemic veins and venules at any moment — the
@@ -285,8 +285,8 @@ function WindkesselTab() {
           <Readout label="Diastole duration" value={diastoleMs.toFixed(0)} unit="ms" color={C.vein} />
         </div>
         <ChartContainer height={200}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={decay} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
+          
+            <LineChart responsive style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} data={decay} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
               <CartesianGrid stroke={C.border} strokeDasharray="3 3" />
               <XAxis dataKey="t" stroke={C.muted} fontSize={11} label={{ value: "Time into diastole (ms)", position: "insideBottom", offset: -3, fill: C.muted, fontSize: 10.5 }} />
               <YAxis stroke={C.muted} fontSize={11} domain={[0, 160]} label={{ value: "Aortic pressure (mmHg)", angle: -90, position: "insideLeft", fill: C.muted, fontSize: 10.5 }} />
@@ -294,7 +294,7 @@ function WindkesselTab() {
               <Line type="monotone" dataKey="P" stroke={C.hormone} strokeWidth={2.3} dot={false} />
               <ReferenceLine y={m.DBP} stroke={C.faint} strokeDasharray="4 4" />
             </LineChart>
-          </ResponsiveContainer>
+          
         </ChartContainer>
         <Note>
           During diastole, the aortic valve is closed and no new inflow arrives; the stretched arterial wall

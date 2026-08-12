@@ -1,8 +1,7 @@
 import React, { useState, useMemo } from "react";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-  ReferenceDot, ReferenceLine, ReferenceArea, ResponsiveContainer,
-  BarChart, Bar, Cell
+  ReferenceDot, ReferenceLine, ReferenceArea, BarChart, Bar, Cell
 } from "recharts";
 import {
   Zap, Activity, Droplet, Brain, RotateCcw,
@@ -185,8 +184,8 @@ function FoundationsTab() {
       <Panel>
         <SectionTitle icon={Activity}>Typical Onset Time — Log Scale</SectionTitle>
         <ChartContainer height={200}>
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={TIMESCALE_DATA} layout="vertical" margin={{ top: 5, right: 20, left: 10, bottom: 0 }}>
+          
+            <BarChart responsive style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} data={TIMESCALE_DATA} layout="vertical" margin={{ top: 5, right: 20, left: 10, bottom: 0 }}>
               <CartesianGrid stroke={C.border} strokeDasharray="3 3" horizontal={false} />
               <XAxis type="number" scale="log" domain={[1, 10000]} stroke={C.muted} fontSize={10.5}
                 label={{ value: "Approx. onset time (seconds, log scale)", position: "insideBottom", offset: -3, fill: C.muted, fontSize: 10 }} />
@@ -196,7 +195,7 @@ function FoundationsTab() {
                 {TIMESCALE_DATA.map((d, i) => <Cell key={i} fill={d.color} />)}
               </Bar>
             </BarChart>
-          </ResponsiveContainer>
+          
         </ChartContainer>
         <Note>
           This is the single most useful organizing fact in this whole area: fast systems (neural, local
@@ -276,8 +275,8 @@ function AutoregulationTab() {
       <Panel>
         <SectionTitle icon={Activity}>Autoregulation of Blood Flow</SectionTitle>
         <ChartContainer height={240}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={curve} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
+          
+            <LineChart responsive style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} data={curve} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
               <CartesianGrid stroke={C.border} strokeDasharray="3 3" />
               <XAxis dataKey="P" stroke={C.muted} fontSize={11} label={{ value: "Perfusion pressure (mmHg)", position: "insideBottom", offset: -3, fill: C.muted, fontSize: 10.5 }} />
               <YAxis stroke={C.muted} fontSize={11} domain={[0, 2.5]} label={{ value: "Flow (relative to normal)", angle: -90, position: "insideLeft", fill: C.muted, fontSize: 10.5 }} />
@@ -288,7 +287,7 @@ function AutoregulationTab() {
               <Line type="monotone" dataKey="Flow" stroke={C.artery} strokeWidth={2.4} dot={false} name="Autoregulated flow" />
               <ReferenceLine x={100} stroke={C.faint} strokeDasharray="4 4" />
             </LineChart>
-          </ResponsiveContainer>
+          
         </ChartContainer>
         <Slider label="Autoregulatory strength (0 = none, 1 = near-perfect)" min={0} max={1} step={0.02} value={plateauStrength}
           onChange={setPlateauStrength} display={plateauStrength.toFixed(2)} color={C.good} />
@@ -366,8 +365,8 @@ function HyperemiaTab() {
           <button onClick={() => setKind("reactive")} style={toggleStyle(kind === "reactive")}>Reactive hyperemia (post-occlusion)</button>
         </div>
         <ChartContainer height={220}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={data} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
+          
+            <LineChart responsive style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} data={data} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
               <CartesianGrid stroke={C.border} strokeDasharray="3 3" />
               <XAxis dataKey="t" stroke={C.muted} fontSize={11} label={{ value: "Time (s, schematic)", position: "insideBottom", offset: -3, fill: C.muted, fontSize: 10.5 }} />
               <YAxis stroke={C.muted} fontSize={11} domain={[0, 5]} label={{ value: "Flow (relative to resting)", angle: -90, position: "insideLeft", fill: C.muted, fontSize: 10.5 }} />
@@ -376,7 +375,7 @@ function HyperemiaTab() {
               <Line type="monotone" dataKey="flow" stroke={C.capillary} strokeWidth={2.4} dot={false} />
               <ReferenceLine y={1} stroke={C.faint} strokeDasharray="4 4" />
             </LineChart>
-          </ResponsiveContainer>
+          
         </ChartContainer>
         <Slider label={kind === "active" ? "Metabolic demand increase" : "Occlusion severity (debt magnitude)"} min={0.3} max={2.5} step={0.05} value={magnitude}
           onChange={setMagnitude} display={`${magnitude.toFixed(2)}×`} color={C.capillary} />

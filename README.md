@@ -1,70 +1,83 @@
-# CVS Interactive Physiology — V4
+# CVS Interactive Physiology — v4.1.2
 
-A mobile-first, offline-first React/Vite application containing five implemented cardiovascular physiology modules. Modules 06–08 are reserved and intentionally empty.
+A mobile-first, offline-first React/Vite application containing **8 cardiovascular physiology learning modules** with interactive models, charts, concept maps, and mobile-friendly controls.
 
-## Implemented modules
+## Modules
+
 1. Basic Hemodynamics
 2. Frank–Starling & Venous Return
 3. Cardiac Cycle & PV Loop
 4. Vascular Distensibility & Pulse Pressure
 5. Microcirculation & Starling Forces
+6. Baroreceptor Reflex & Autonomic Control
+7. Local & Humoral Control of Blood Flow
+8. Exercise — Integrated Response
 
-## Target architecture
+## Current v4.1.2 improvements
+
+- Fixed mobile/Android WebView chart sizing for Recharts visualizations.
+- Added per-chart zoom controls (75%–200%) where Recharts charts are used.
+- Preserved the existing scientific models, equations, data and module content.
+- Removed the global chart `min-height: 180px !important` rule that could distort short charts.
+- Unified light/dark theme tokens across the module UI.
+- First launch follows the device/system light-dark preference; an explicit user choice is persisted.
+- Added a direct link to the official project repository on the home screen:
+  https://github.com/HamedKhaan/CVS-PHYSIO
+- Added a recognizable cardiovascular app icon (heart + ECG motif) for the PWA/Android packaging.
+- Bumped the service-worker cache version so deployed clients can receive the updated assets.
+
+## Architecture
+
 React + Vite → PWA/offline-first → Capacitor → Android APK/AAB.
 
-Capacitor is designed to wrap modern web applications in native Android/iOS shells while preserving the web codebase.
-
-Vite production builds are generated with `npm run build` into `dist`; the project uses a relative base so it can also be packaged as a local app.
+The core educational content is bundled locally. The app does not require a remote API for its educational modules.
 
 ## Local development
 
 ```bash
 npm install
 npm run qa
-npm run dev
-```
-
-Production web build:
-
-```bash
 npm run build
-npm run preview
+npm run dev
 ```
 
 ## Android
 
-After a successful web build in a normal Node + Android SDK environment:
-
 ```bash
 npm install
+npm run qa
+npm run build
 npx cap add android
 npx cap sync android
 npx cap open android
 ```
 
-Build a debug APK or a signed release AAB from Android Studio. Full steps are in `BUILD_ANDROID.md`.
+Then build/debug or generate a signed release APK/AAB from Android Studio.
 
-## V4 changes (from previous)
-- Mobile UX refined for viewports < 700 px
-- Safe-area insets for notch / gesture navigation
-- Larger touch targets (min ~42–44 px)
-- Prevented unwanted horizontal overflow in charts
-- `100dvh` used for mobile viewport height
-- Google Fonts `@import` removed → fully offline-capable (system fonts)
-- QA script passes (no external network calls, no eval, 5 modules + 3 reserved)
-- Version bumped to 4.0.0
+## Security
 
-## Security design
-- No API keys or credentials in source.
-- No remote API dependency in the five supplied modules.
-- No unnecessary Android permissions.
-- Educational data is bundled locally.
-- PWA service worker is same-origin only.
-- Production Android releases should be signed with a private release keystore.
-- The app is educational and not a clinical decision-support device.
+- No API keys or passwords belong in the repository.
+- Keep the Android signing keystore and credentials outside GitHub.
+- Public/open-source source code does **not** allow other GitHub users to modify an APK already installed on your phone.
+- Only install/update an APK from a build source you trust.
+- Keep the `main` branch protected if other contributors will submit changes.
+- Review pull requests before merging them into the release branch.
+- Keep Android permissions minimal.
+- Do not put secrets into GitHub Actions logs or source files.
 
-## Scientific validation
-See `SCIENTIFIC_VALIDATION.md`. Module 05 distinguishes the classic Starling teaching equation from the modern glycocalyx/revised-Starling framework.
+## Scientific scope
 
-## Important build limitation for this environment
-This package includes the web/PWA and Capacitor configuration. The current execution environment has intermittent npm/tar issues and cannot reliably produce a reproducible `dist/` or Android Gradle project. The project is left in a clean install/buildable state. No fake or unverified APK is supplied.
+This is an educational cardiovascular physiology application, not a clinical decision-support system. The interactive models are intentionally simplified teaching models.
+
+See `SCIENTIFIC_VALIDATION.md` for the current scientific validation scope and limitations.
+
+## Build limitation
+
+A reproducible APK/AAB must be built in a normal Node.js + Android SDK environment. The project does not claim an APK has been successfully built unless the build actually passes.
+
+## Chart rendering
+
+The project uses **Recharts 3 native responsive charts** (`responsive` prop) rather than the older `ResponsiveContainer` wrapper. This is intentional for mobile/WebView reliability: Recharts documents the native `responsive` mode as using standard CSS sizing without the extra `ResponsiveContainer` resolution layer. The chart itself is sized to its explicit `ChartContainer` frame, so it can render on first mount and resize with the device.
+
+The app currently contains 20 Recharts visualizations across Modules 1, 2, 3, 4, 6 and 7. Modules 5 and 8 use their own visualization/diagram approaches.
+

@@ -1,8 +1,7 @@
 import React, { useState, useMemo } from "react";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-  ReferenceDot, ReferenceLine, ReferenceArea, ResponsiveContainer,
-  BarChart, Bar, Cell, AreaChart, Area
+  ReferenceDot, ReferenceLine, ReferenceArea, BarChart, Bar, Cell, AreaChart, Area
 } from "recharts";
 import {
   Activity, Radio, GitBranch, Brain, RotateCcw,
@@ -288,8 +287,8 @@ function ReflexArcTab() {
       <Panel>
         <SectionTitle icon={Radio}>Baroreceptor Firing Rate — Sigmoid Response Curve</SectionTitle>
         <ChartContainer height={220}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={curve} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
+          
+            <LineChart responsive style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} data={curve} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
               <CartesianGrid stroke={C.border} strokeDasharray="3 3" />
               <XAxis dataKey="MAP" stroke={C.muted} fontSize={11} domain={[30, 220]}
                 label={{ value: "MAP (mmHg)", position: "insideBottom", offset: -3, fill: C.muted, fontSize: 10.5 }} />
@@ -300,7 +299,7 @@ function ReflexArcTab() {
               <ReferenceDot x={MAP} y={resp.firing} r={5} fill={C.artery} stroke="none" />
               <ReferenceLine x={93} stroke={C.faint} strokeDasharray="4 4" />
             </LineChart>
-          </ResponsiveContainer>
+          
         </ChartContainer>
         <Slider label="Current MAP" min={30} max={220} step={1} value={MAP}
           onChange={setMAP} display={`${MAP} mmHg`} color={C.artery} />
@@ -310,8 +309,8 @@ function ReflexArcTab() {
         <SectionTitle icon={Activity}>Resulting Autonomic Balance & Effector Response</SectionTitle>
         <AutonomicSeesaw sympathetic={resp.sympathetic} parasympathetic={resp.parasympathetic} />
         <ChartContainer height={160} style={{ marginTop: 14 }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={[
+          
+            <BarChart responsive style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} data={[
               { name: "ΔHR", value: +resp.dHR.toFixed(1) },
               { name: "ΔContractility", value: +resp.dContractility.toFixed(1) },
               { name: "ΔTPR", value: +resp.dTPR.toFixed(1) },
@@ -328,7 +327,7 @@ function ReflexArcTab() {
                 ))}
               </Bar>
             </BarChart>
-          </ResponsiveContainer>
+          
         </ChartContainer>
         <Note>
           This panel shows the immediate reflex output at a given (already-changed) MAP — a snapshot of the
@@ -394,8 +393,8 @@ function BufferingTab() {
       <Panel>
         <SectionTitle icon={Activity}>The "Buffer Nerve" Effect — Hemorrhage Simulation</SectionTitle>
         <ChartContainer height={260}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={curveData} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
+          
+            <LineChart responsive style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} data={curveData} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
               <CartesianGrid stroke={C.border} strokeDasharray="3 3" />
               <XAxis dataKey="loss" stroke={C.muted} fontSize={11}
                 label={{ value: "Blood volume lost (%)", position: "insideBottom", offset: -3, fill: C.muted, fontSize: 10.5 }} />
@@ -409,18 +408,18 @@ function BufferingTab() {
               <Line type="monotone" dataKey="With intact reflex" stroke={C.good} strokeWidth={2.4} dot={false} />
               <ReferenceDot x={lossPct} y={shownMAP} r={6} fill={C.copper} stroke="#fff" strokeWidth={1.5} />
             </LineChart>
-          </ResponsiveContainer>
+          
         </ChartContainer>
         <ChartContainer height={90} style={{ marginTop: 4 }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={curveData} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
+          
+            <AreaChart responsive style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} data={curveData} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
               <XAxis dataKey="loss" stroke={C.muted} fontSize={10} hide />
               <YAxis stroke={C.muted} fontSize={10} domain={[0, 25]} width={30} />
               <Tooltip contentStyle={{ background: C.panel2, border: `1px solid ${C.border}`, fontSize: 12 }} formatter={v => [`${v} mmHg`, "MAP recovered by reflex"]} />
               <Area type="monotone" dataKey="gap" stroke={C.copper} fill={C.copper} fillOpacity={0.25} name="MAP recovered by reflex" />
               <ReferenceDot x={lossPct} y={current.buffered - current.unbuffered} r={4} fill={C.copper} stroke="none" />
             </AreaChart>
-          </ResponsiveContainer>
+          
         </ChartContainer>
         <div style={{ fontSize: 10.5, color: C.muted, textAlign: "center", marginTop: -4 }}>mmHg of MAP actively recovered by the intact reflex, at each severity of blood loss</div>
         <Slider label="Acute blood volume lost" min={0} max={45} step={1} value={lossPct}

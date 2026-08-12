@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import {
   LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
-  ResponsiveContainer, Cell, ReferenceDot
+  Cell, ReferenceDot
 } from "recharts";
 import {
   Zap, Waves, Gauge, ArrowLeftRight, GitBranch, Brain,
@@ -183,8 +183,8 @@ function OhmTab() {
           (MAP − CVP), not MAP alone.
         </div>
         <ChartContainer height={180} style={{ marginTop: 12 }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={barData} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
+          
+            <BarChart responsive style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} data={barData} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
               <CartesianGrid stroke={C.border} strokeDasharray="3 3" />
               <XAxis dataKey="name" stroke={C.muted} fontSize={12} />
               <YAxis stroke={C.muted} fontSize={11} />
@@ -193,7 +193,7 @@ function OhmTab() {
                 {barData.map((d, i) => <Cell key={i} fill={d.fill} />)}
               </Bar>
             </BarChart>
-          </ResponsiveContainer>
+          
         </ChartContainer>
       </Panel>
     </div>
@@ -274,8 +274,8 @@ function PoiseuilleTab() {
       <Panel>
         <SectionTitle>Resistance vs Radius (Fourth-Power Curve)</SectionTitle>
         <ChartContainer height={220}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={radiusCurve} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
+          
+            <LineChart responsive style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} data={radiusCurve} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
               <CartesianGrid stroke={C.border} strokeDasharray="3 3" />
               <XAxis dataKey="r" stroke={C.muted} fontSize={11} label={{ value: "Relative radius", position: "insideBottom", offset: -3, fill: C.muted, fontSize: 11 }} />
               <YAxis stroke={C.muted} fontSize={11} domain={[0, 20]} label={{ value: "Relative R", angle: -90, position: "insideLeft", fill: C.muted, fontSize: 10 }} />
@@ -283,7 +283,7 @@ function PoiseuilleTab() {
               <Line type="monotone" dataKey="R" stroke={C.artery} strokeWidth={2.5} dot={false} />
               <ReferenceDot x={radius} y={Rrel > 20 ? 20 : Rrel} r={5} fill={C.copper} stroke="none" />
             </LineChart>
-          </ResponsiveContainer>
+          
         </ChartContainer>
         <Note>
           Physiologic takeaway: resistance vessels (arterioles — عروق مقاومتی) are the body's primary site
@@ -419,8 +419,8 @@ function TreeTab() {
         <SectionTitle icon={ArrowLeftRight}>Pressure Drop Along the Systemic Vascular Tree</SectionTitle>
         <VesselFunnel />
         <ChartContainer height={280} style={{ marginTop: 10 }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={TREE_SEGMENTS} layout="vertical" margin={{ top: 5, right: 20, left: 10, bottom: 0 }}>
+          
+            <BarChart responsive style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} data={TREE_SEGMENTS} layout="vertical" margin={{ top: 5, right: 20, left: 10, bottom: 0 }}>
               <CartesianGrid stroke={C.border} strokeDasharray="3 3" horizontal={false} />
               <XAxis type="number" stroke={C.muted} fontSize={11} domain={[0, 105]} label={{ value: "Pressure (mmHg)", position: "insideBottom", offset: -3, fill: C.muted, fontSize: 11 }} />
               <YAxis type="category" dataKey="name" stroke={C.muted} fontSize={10.5} width={130} />
@@ -429,7 +429,7 @@ function TreeTab() {
                 {TREE_SEGMENTS.map((d, i) => <Cell key={i} fill={d.color} opacity={hoverIdx === i ? 1 : 0.85} />)}
               </Bar>
             </BarChart>
-          </ResponsiveContainer>
+          
         </ChartContainer>
         <Note>
           Values are approximate, teaching-level numbers (Guyton's classic Ch.14 figure); exact figures vary
@@ -484,8 +484,8 @@ function ContinuityTab() {
         </div>
         <ContinuityFunnel />
         <ChartContainer height={240} style={{ marginTop: 10 }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={data} margin={{ top: 5, right: 10, left: -10, bottom: 30 }}>
+          
+            <BarChart responsive style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} data={data} margin={{ top: 5, right: 10, left: -10, bottom: 30 }}>
               <CartesianGrid stroke={C.border} strokeDasharray="3 3" />
               <XAxis dataKey="name" stroke={C.muted} fontSize={10} angle={-25} textAnchor="end" interval={0} />
               <YAxis stroke={C.muted} fontSize={11} scale="log" domain={[1, 3000]} label={{ value: "Total cross-sectional area (cm², log)", angle: -90, position: "insideLeft", fill: C.muted, fontSize: 10 }} />
@@ -495,7 +495,7 @@ function ContinuityTab() {
                 {data.map((d, i) => <Cell key={i} fill={d.color} />)}
               </Bar>
             </BarChart>
-          </ResponsiveContainer>
+          
         </ChartContainer>
         <div style={{ display: "flex", flexDirection: "column", gap: 6, marginTop: 10 }}>
           {data.map((s, i) => (

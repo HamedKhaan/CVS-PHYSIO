@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-  ReferenceDot, ReferenceLine, ResponsiveContainer, ReferenceArea
+  ReferenceDot, ReferenceLine, ReferenceArea
 } from "recharts";
 import {
   HeartPulse, Activity, Volume2, Brain, RotateCcw,
@@ -206,8 +206,8 @@ function FoundationsTab() {
       <Panel>
         <SectionTitle icon={Ruler}>Where Frank-Starling Actually Comes From: the Sarcomere Length-Tension Curve</SectionTitle>
         <ChartContainer height={220}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={tensionCurve} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
+          
+            <LineChart responsive style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} data={tensionCurve} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
               <CartesianGrid stroke={C.border} strokeDasharray="3 3" />
               <XAxis dataKey="L" type="number" domain={[1.4, 3.6]} stroke={C.muted} fontSize={11}
                 label={{ value: "Sarcomere length (μm)", position: "insideBottom", offset: -3, fill: C.muted, fontSize: 10.5 }} />
@@ -219,7 +219,7 @@ function FoundationsTab() {
               <Line type="monotone" dataKey="Passive" stroke={C.vein} strokeWidth={1.8} strokeDasharray="4 3" dot={false} name="Passive (elastic) tension" />
               <ReferenceDot x={sarcLen} y={currentT.active} r={5} fill={C.copper} stroke="none" />
             </LineChart>
-          </ResponsiveContainer>
+          
         </ChartContainer>
         <Slider label="Sarcomere length (stretch, کشش سارکومر)" min={1.4} max={3.6} step={0.02} value={sarcLen}
           onChange={setSarcLen} display={`${sarcLen.toFixed(2)} μm`} color={C.copper} />
@@ -432,8 +432,8 @@ function WiggersTab() {
       <Panel>
         <SectionTitle icon={Activity}>Wiggers Diagram — Pressure Traces Across One Cardiac Cycle (نمودار ویگرز)</SectionTitle>
         <ChartContainer height={260}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={data} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
+          
+            <LineChart responsive style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} data={data} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
               <CartesianGrid stroke={C.border} strokeDasharray="3 3" />
               <XAxis dataKey="t" stroke={C.muted} fontSize={11} domain={[0, 800]}
                 label={{ value: "Time (ms) — one cycle at ~75 bpm", position: "insideBottom", offset: -3, fill: C.muted, fontSize: 10.5 }} />
@@ -447,18 +447,18 @@ function WiggersTab() {
               <ReferenceLine x={80} stroke={C.faint} strokeDasharray="3 3" label={{ value: "S1", fill: C.muted, fontSize: 10, position: "top" }} />
               <ReferenceLine x={280} stroke={C.faint} strokeDasharray="3 3" label={{ value: "S2", fill: C.muted, fontSize: 10, position: "top" }} />
             </LineChart>
-          </ResponsiveContainer>
+          
         </ChartContainer>
         <ChartContainer height={130} style={{ marginTop: 6 }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={data} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
+          
+            <LineChart responsive style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} data={data} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
               <CartesianGrid stroke={C.border} strokeDasharray="3 3" />
               <XAxis dataKey="t" stroke={C.muted} fontSize={10} domain={[0, 800]} />
               <YAxis stroke={C.muted} fontSize={10} domain={[0, 160]} label={{ value: "LV Volume (mL)", angle: -90, position: "insideLeft", fill: C.muted, fontSize: 9.5 }} />
               <Tooltip contentStyle={{ background: C.panel2, border: `1px solid ${C.border}`, fontSize: 12 }} />
               <Line type="monotone" dataKey="Vol" stroke={C.capillary} strokeWidth={2.2} dot={false} name="LV volume" />
             </LineChart>
-          </ResponsiveContainer>
+          
         </ChartContainer>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 10 }}>
           <Readout label="EDV" value={m.EDV.toFixed(0)} unit="mL" color={C.capillary} />
@@ -530,8 +530,8 @@ function PVLoopTab() {
       <Panel>
         <SectionTitle icon={HeartPulse}>Pressure-Volume Loop (حلقه فشار-حجم بطنی)</SectionTitle>
         <ChartContainer height={300}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
+          
+            <LineChart responsive style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
               <CartesianGrid stroke={C.border} strokeDasharray="3 3" />
               <XAxis dataKey="V" type="number" domain={[0, 180]} stroke={C.muted} fontSize={11}
                 label={{ value: "LV Volume (mL)", position: "insideBottom", offset: -3, fill: C.muted, fontSize: 10.5 }} allowDuplicatedCategory={false} />
@@ -545,7 +545,7 @@ function PVLoopTab() {
               <ReferenceDot x={m.EDV} y={m.edp} r={4} fill={C.copper} stroke="none" />
               <ReferenceDot x={m.ESV} y={m.peakSys} r={4} fill={C.copper} stroke="none" />
             </LineChart>
-          </ResponsiveContainer>
+          
         </ChartContainer>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 10 }}>
           <Readout label="EDV" value={m.EDV.toFixed(0)} unit="mL" color={C.capillary} />

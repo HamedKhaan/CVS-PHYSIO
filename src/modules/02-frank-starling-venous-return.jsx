@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-  ReferenceDot, ReferenceLine, ResponsiveContainer
+  ReferenceDot, ReferenceLine
 } from "recharts";
 import {
   HeartPulse, Activity, GitMerge, Brain, RotateCcw,
@@ -191,8 +191,8 @@ function CardiacTab() {
       <Panel>
         <SectionTitle icon={HeartPulse}>Cardiac (Ventricular) Function Curve — Frank-Starling</SectionTitle>
         <ChartContainer height={260}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={curve} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
+          
+            <LineChart responsive style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} data={curve} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
               <CartesianGrid stroke={C.border} strokeDasharray="3 3" />
               <XAxis dataKey="RAP" stroke={C.muted} fontSize={11} type="number" domain={[-4, 20]}
                 label={{ value: "RAP — Right Atrial Pressure (mmHg)", position: "insideBottom", offset: -3, fill: C.muted, fontSize: 10.5 }} />
@@ -205,7 +205,7 @@ function CardiacTab() {
               <Line type="monotone" dataKey="CO" stroke={C.artery} strokeWidth={2.5} dot={false} name="CO (current)" />
               <ReferenceLine x={0} stroke={C.faint} strokeDasharray="4 4" />
             </LineChart>
-          </ResponsiveContainer>
+          
         </ChartContainer>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 10 }}>
           <Readout label="CO at RAP=0" value={coAtZero.toFixed(1)} unit="L/min" color={C.artery} />
@@ -266,8 +266,8 @@ function VenousTab() {
       <Panel>
         <SectionTitle icon={Activity}>Venous Return Curve</SectionTitle>
         <ChartContainer height={260}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={curve} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
+          
+            <LineChart responsive style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} data={curve} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
               <CartesianGrid stroke={C.border} strokeDasharray="3 3" />
               <XAxis dataKey="RAP" stroke={C.muted} fontSize={11} type="number" domain={[-4, 20]}
                 label={{ value: "RAP — Right Atrial Pressure (mmHg)", position: "insideBottom", offset: -3, fill: C.muted, fontSize: 10.5 }} />
@@ -281,7 +281,7 @@ function VenousTab() {
               <ReferenceDot x={Psf} y={0} r={5} fill={C.copper} stroke="none" />
               <ReferenceLine x={0} stroke={C.faint} strokeDasharray="4 4" />
             </LineChart>
-          </ResponsiveContainer>
+          
         </ChartContainer>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 10 }}>
           <Readout label="Mean Systemic Filling Pressure (Psf)" value={Psf.toFixed(1)} unit="mmHg" color={C.copper} />
@@ -353,8 +353,8 @@ function CombinedTab() {
       <Panel>
         <SectionTitle icon={GitMerge}>Graphical Method — Curve Intersection and Equilibrium CO</SectionTitle>
         <ChartContainer height={280}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={curve} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
+          
+            <LineChart responsive style={{ width: "100%", height: "100%", minWidth: 0, minHeight: 0 }} data={curve} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
               <CartesianGrid stroke={C.border} strokeDasharray="3 3" />
               <XAxis dataKey="RAP" stroke={C.muted} fontSize={11} type="number" domain={[-4, 20]}
                 label={{ value: "RAP (mmHg)", position: "insideBottom", offset: -3, fill: C.muted, fontSize: 10.5 }} />
@@ -366,7 +366,7 @@ function CombinedTab() {
               <Line type="monotone" dataKey="VR" stroke={C.vein} strokeWidth={2.5} dot={false} name="Venous return" />
               <ReferenceDot x={eq.RAP} y={eq.CO} r={7} fill={C.copper} stroke="#fff" strokeWidth={1.5} />
             </LineChart>
-          </ResponsiveContainer>
+          
         </ChartContainer>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 10 }}>
           <Readout label="Equilibrium RAP" value={eq.RAP.toFixed(1)} unit="mmHg" color={C.copper} />

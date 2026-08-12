@@ -1,29 +1,57 @@
-# Release-readiness status — V4 (final in this environment)
+# Release-readiness — CVS Interactive Physiology v4.1.2
 
 ## Completed in this package
+
+- 8 cardiovascular physiology modules integrated
 - React/Vite application shell
-- 5 implemented interactive modules
-- Modules 06–08 reserved (empty placeholders in App.jsx)
-- Offline-first PWA assets (manifest + service worker)
-- Capacitor configuration present
-- Mobile safe-area, touch-target, overflow and 100dvh refinements
-- Google Fonts network dependency removed → pure offline fonts
-- QA script passes cleanly
-- Scientific validation notes retained
-- Version set to 4.0.0
-- BUILD_ANDROID.md documents the official next steps
+- Mobile-first layout
+- Offline-first PWA structure
+- Android/Capacitor configuration
+- Mobile-safe Recharts containers
+- Per-chart zoom controls
+- Light/dark theme handling
+- System theme fallback
+- GitHub link on the home screen
+- Heart + ECG PWA icons in 192×192 and 512×512
+- Service-worker cache versioning
+- QA script
+- Scientific validation documentation retained
 
-## Intentionally not completed here
-- `npm install` / production Vite build (environment has npm/tar filesystem errors and intermittent registry issues)
-- Android Gradle project generation
-- Signed or unsigned APK/AAB
-- Physical-device testing
+## Required before release
 
-These require a normal Node.js + Android Studio/SDK machine with unrestricted npm registry access. No fake APK or unverified build artifact is included.
+Run on a normal build environment:
 
-## How to finish on a normal machine
-1. `npm install`
-2. `npm run qa`
-3. `npm run build`
-4. `npx cap add android && npx cap sync android`
-5. Open in Android Studio → Build → Generate Signed Bundle / APK
+```bash
+npm install
+npm run qa
+npm run build
+```
+
+Then:
+
+```bash
+npx cap sync android
+```
+
+and test on a real Android device.
+
+## Release test checklist
+
+- [ ] All 8 modules open
+- [ ] All charts render
+- [ ] Chart zoom works
+- [ ] No horizontal clipping on a small phone
+- [ ] Light mode works
+- [ ] Dark mode works
+- [ ] System theme fallback works
+- [ ] Theme persists after relaunch
+- [ ] Home GitHub link opens correctly
+- [ ] App icon appears correctly
+- [ ] Cold start works
+- [ ] Back navigation works
+- [ ] No unexpected network/API dependency
+- [ ] Release APK/AAB is signed with the private release key
+
+## Important
+
+This package does not claim that an APK/AAB has been successfully built unless the actual build passes in the target Android environment.

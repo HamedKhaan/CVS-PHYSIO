@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-  ReferenceDot, ReferenceLine, ResponsiveContainer, BarChart, Bar, Cell
+  ReferenceDot, ReferenceLine, BarChart, Bar, Cell
 } from "recharts";
 import {
   Droplets, Activity, Waves, Brain, RotateCcw,

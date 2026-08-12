@@ -8,7 +8,7 @@
   "orientation": "portrait-primary",
   "background_color": "#0b1020",
   "theme_color": "#0b1020",
-  "description": "Interactive cardiovascular physiology learning modules.",
+  "description": "Interactive cardiovascular physiology learning modules — 8 modules.",
   "icons": [
     {
       "src": "./icons/icon-192.png",

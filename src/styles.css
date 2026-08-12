@@ -65,27 +65,26 @@ button,input,select,textarea{font-size:16px}
   input[type=checkbox],input[type=radio]{width:22px;height:22px}
 }
 
-/* Fix Recharts sizing on Android WebView / Capacitor */
-.recharts-responsive-container {
+/* Recharts 3 native responsive charts — no ResponsiveContainer wrapper needed. */
+.chart-frame .recharts-wrapper {
   width: 100% !important;
   height: 100% !important;
-  min-height: 160px !important;
-}
-.recharts-wrapper,
-.recharts-surface {
-  width: 100% !important;
-  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
   overflow: visible !important;
 }
-.module-host .recharts-responsive-container {
-  min-height: 180px;
+.chart-frame .recharts-surface {
+  display: block;
+  max-width: none !important;
+  overflow: visible !important;
 }
 
-/* Robust chart sizing + per-chart zoom controls */
-.chart-frame{width:100%;min-width:0;max-width:100%;position:relative;border-radius:8px;overflow:auto;overscroll-behavior-x:contain}
-.chart-zoom-stage{width:100%;min-width:0;position:relative}
-.chart-frame .recharts-responsive-container{width:100%!important;height:100%!important;min-width:0!important;min-height:0!important}
-.chart-frame .recharts-wrapper,.chart-frame .recharts-surface{max-width:none!important;overflow:visible!important}
+/* Keep SVG charts crisp and touch-friendly inside the Android/WebView layout. */
+.chart-frame svg {
+  display: block;
+  max-width: none;
+}
+
 .chart-zoom-controls{position:absolute;top:8px;right:8px;z-index:5;display:flex;align-items:center;gap:4px;padding:3px;border:1px solid var(--c-border);border-radius:10px;background:var(--c-panel);backdrop-filter:blur(8px)}
 .chart-zoom-button,.chart-zoom-value{min-width:30px;height:30px;border:0;border-radius:7px;background:transparent;color:var(--c-text);font:700 13px/1 system-ui,sans-serif;cursor:pointer}
 .chart-zoom-value{min-width:44px;font-size:11px;color:var(--c-muted)}
